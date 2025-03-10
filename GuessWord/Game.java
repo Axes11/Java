@@ -1,15 +1,20 @@
 import java.util.Objects;
 import java.util.Scanner;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 public class Game {
-    public String[] arrayWithWords = {"bread", "carrot", "potato", "tomato"};
-    public String wordToGuess = generateRandomWord();
+    public String wordToGuess = getRandomWord();
     public Scanner scanner = new Scanner(System.in);
     public boolean isGuessed = false;
     public int attempts = 0;
 
     public int game(String word){
         String restart;
+
+        System.out.println(wordToGuess);
 
         do{
             System.out.println("Type your word: ");
@@ -42,14 +47,28 @@ public class Game {
         return 1;
     }
 
-    public String generateRandomWord(){
-        int randomInt = (int)(Math.random() * 3);
-        return arrayWithWords[randomInt];
-    }
-
     public void restartGame(){
-        wordToGuess = generateRandomWord();
+        wordToGuess = getRandomWord();
         attempts = 0;
         isGuessed = false;
+    }
+
+    public String getRandomWord(){
+        try{
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(new URI("https://random-word-api.herokuapp.com/word?length=5"))
+                    .GET()
+                    .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            String responseBody = response.body();
+
+            return responseBody.replace("[", "").replace("]", "").replace("\"", "");
+        }catch (Exception e){
+            e.printStackTrace();
+            return "error";
+        }
     }
 }
