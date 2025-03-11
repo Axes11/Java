@@ -1,3 +1,4 @@
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Scanner;
 import java.net.URI;
@@ -19,6 +20,25 @@ public class Game {
         do{
             System.out.println("Type your word: ");
             String wordFromUser = scanner.nextLine();
+
+            String[] wordFromUserArr = wordFromUser.split("");
+            String[] wordToGuessArr = wordToGuess.split("");
+
+            StringBuilder result = new StringBuilder();
+
+            for (int i = 0; i < wordFromUserArr.length; i++) {
+                if (wordFromUserArr[i].equals(wordToGuessArr[i])) {
+                    result.append(wordFromUserArr[i].toUpperCase(Locale.ROOT));
+                }
+                else if (wordToGuess.contains(wordFromUserArr[i])) {
+                    result.append("(").append(wordFromUserArr[i]).append(")");
+                }
+                else {
+                    result.append(wordFromUserArr[i]);
+                }
+            }
+
+            System.out.println(result); // Преобразуем обратно в строку
 
             if(Objects.equals(wordFromUser, wordToGuess)){
                 isGuessed = true;
