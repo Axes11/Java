@@ -38,7 +38,7 @@ public class Game {
                 }
             }
 
-            System.out.println(result); // Преобразуем обратно в строку
+            System.out.println(result);
 
             if(Objects.equals(wordFromUser, wordToGuess)){
                 isGuessed = true;
@@ -51,7 +51,7 @@ public class Game {
                         break;
                     }
             }else{
-                if(attempts >= 4 && isGuessed == false){
+                if(attempts >= 4 && !isGuessed){
                     System.out.println("Right word was: " + wordToGuess + " You lose! You want try again? (y/n): ");
                     restart = scanner.nextLine();
                     if(Objects.equals(restart, "yes")){
@@ -62,7 +62,7 @@ public class Game {
                 }
                 attempts += 1;
             }
-        }while(attempts < 4 && isGuessed == false);
+        }while(attempts < 4 && !isGuessed);
 
         return 1;
     }
