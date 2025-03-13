@@ -18,7 +18,7 @@ public class Game {
         System.out.println(wordToGuess);
 
         do{
-            System.out.println("Type your word: ");
+            System.out.print("Type your word: ");
             String wordFromUser = scanner.nextLine();
 
             String[] wordFromUserArr = wordFromUser.split("");
@@ -42,7 +42,7 @@ public class Game {
 
             if(Objects.equals(wordFromUser, wordToGuess)){
                 isGuessed = true;
-                System.out.println("You guessed! Want try again? (yes/no): ");
+                System.out.print("You guessed! Want try again? (yes/no): ");
                 restart = scanner.nextLine();
                     if(Objects.equals(restart, "yes")){
                         restartGame();
