@@ -14,12 +14,19 @@ public class Game {
 
     public int game(String word){
         String restart;
-
+        String wordFromUser;
         System.out.println(wordToGuess);
 
         do{
-            System.out.print("Type your word: ");
-            String wordFromUser = scanner.nextLine();
+
+            do{
+                System.out.print("Type your word: ");
+                wordFromUser = scanner.nextLine();
+
+                if(wordFromUser.length() != 5) {
+                    System.out.println("Your word must be equal 5 letters");
+                }
+            }while(wordFromUser.length() != 5);
 
             String[] wordFromUserArr = wordFromUser.split("");
             String[] wordToGuessArr = wordToGuess.split("");
@@ -51,8 +58,8 @@ public class Game {
                         break;
                     }
             }else{
-                if(attempts >= 4 && !isGuessed){
-                    System.out.println("Right word was: " + wordToGuess + " You lose! You want try again? (y/n): ");
+                if(attempts >= 3 && !isGuessed){
+                    System.out.print("Right word was: " + wordToGuess + ". You lose! You want try again? (yes/no): ");
                     restart = scanner.nextLine();
                     if(Objects.equals(restart, "yes")){
                         restartGame();
@@ -71,6 +78,7 @@ public class Game {
         wordToGuess = getRandomWord();
         attempts = 0;
         isGuessed = false;
+        System.out.println(wordToGuess);
     }
 
     public String getRandomWord(){

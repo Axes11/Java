@@ -16,7 +16,7 @@ public class Main {
         } else if (Objects.equals(startGame,"no")) {
             System.out.println("Game will not start.");
         } else {
-            System.out.println("Invalid input. Please enter 'y' or 'n'.");
+            System.out.println("Invalid input. Please enter 'yes' or 'no'.");
         }
 
         scanner.close();
