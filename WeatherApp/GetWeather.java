@@ -8,7 +8,7 @@ public class GetWeather {
         try {
             // Указываем URL с реальным API-ключом
             String apiKey = ""; // Ваш API-ключ
-            String urlString = "https://api.openweathermap.org/data/3.0/onecall?lat=33.44&lon=-945.04&exclude=hourly,daily&appid=" + apiKey;
+            String urlString = "https://api.openweathermap.org/data/.0/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid=" + apiKey;
 
             // Создаем объект URL
             URL url = new URL(urlString);
